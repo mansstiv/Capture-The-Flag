@@ -2,6 +2,11 @@
 
 ![](logo.png)
 
+### Μέλη ομάδας
+
+- 1115201700040, Βασίλειος Καζάκος ([KazakosVas](https://github.com/KazakosVas))
+- 1115201700152, Εμμανουήλ Στιβακτάς ([mansstiv](https://github.com/mansstiv))
+
 Ερωτήσεις:
 
 1. Πού βρίσκεται ο Γιώργος;
