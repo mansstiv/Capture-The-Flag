@@ -197,7 +197,7 @@ curl -d "3" -v 'http://127.0.0.1:8000/ultimate.html' -H 'User-Agent: Mozilla/5.0
      0x5655689d <route+118>:      add    $0x10,%esp
 ```
 
-Όλα τα παραπάνω συνοψίζονται στο script [question3.py](src/question3_4_5/question3.py), το οποίο αφού τρέξαμε πήραμε τα δεδομένα του **/var/www/pico/ultimate.html**.
+Όλα τα παραπάνω συνοψίζονται στο script [question3.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question3_4_5/question3.py), το οποίο αφού τρέξαμε πήραμε τα δεδομένα του **/var/www/pico/ultimate.html**.
 
 ```
   <pre>
