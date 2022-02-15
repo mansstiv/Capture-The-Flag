@@ -29,7 +29,7 @@ http://flffeyo7q6zllfse2sgwh7i5b5apn73g6upedyihqvaarhq5wrkkn7ad.onion/
 Το phps δεν έμοιαζε ξένο καθώς το είχαμε συναντήσει και στο server-info page. <br> <br>
 ![phps2](https://i.ibb.co/NZkFBV6/2.png)
 
-5. Οδηγηθήκαμε στο http://flffeyo7q6zllfse2sgwh7i5b5apn73g6upedyihqvaarhq5wrkkn7ad.onion/access.phps το οποίο είχε τον αρκετά απλό γρίφο ```// i set $desired to the 48th multiple of 7 that contains a 7 in its decimal representation``` τον οποίο λύσαμε με το python  πρόγραμμα [multiples.py](src/question1/multiples.py). <br><br>
+5. Οδηγηθήκαμε στο http://flffeyo7q6zllfse2sgwh7i5b5apn73g6upedyihqvaarhq5wrkkn7ad.onion/access.phps το οποίο είχε τον αρκετά απλό γρίφο ```// i set $desired to the 48th multiple of 7 that contains a 7 in its decimal representation``` τον οποίο λύσαμε με το python  πρόγραμμα [multiples.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question1/multiples.py). <br><br>
 Βλέποντας απο το κώδικα οτι χρειάζονται 7 ψηφία δώσαμε το user=0001337. Εμπνευσμένοι από το http://danuxx.blogspot.com/2013/03/unauthorized-access-bypassing-php-strcmp.html  για να περάσουμε και τον έλεγχο για το κωδικό δώσαμε το password σα πίνακα. Έτσι με τη χρήση αυτού του link http://flffeyo7q6zllfse2sgwh7i5b5apn73g6upedyihqvaarhq5wrkkn7ad.onion/access.php?user=0001337&password[]=a
 προχωρήσαμε στο επόμενο στοιχείο.
 
@@ -48,10 +48,10 @@ https://xorbin.com/tools/sha256-hash-calculator
 
 9. Με τη χρήση του σωστού cookie οδηγηθήκαμε στο http://2bx6yarg76ryzjdpegl5l76skdlb4vvxwjxpipq4nhz3xnjjh3jo6qyd.onion/sekritbackup1843/. 
 Για να αποκρυπτογραφήσουμε τα αρχεία με τη χρήση του gpg εργαστήκαμε ως εξής. <br>
-Αρχικά φτιάξαμε ένα python program [generatekeys.py](src/question1/generatekeys.py) το οποίο  δημιουργεί υποψήφια κλειδιά. Τα κλειδιά αποτελούνται από όλες τις ημερομηνίες του 2021. Σαν secret χρησιμοποιούν κάποιες λέξεις που θεωρήσαμε πιθανές από ότι έχουμε συναντήσει ως τώρα και απο το https://ropsten.etherscan.io/tx/0xdcf1bfb1207e9b22c77de191570d46617fe4cdf4dbc195ade273485dddc16783 την λέξη <b>bigtent</b>. Έπειτα με το πρόγραμμα [bruteforce.c](src/question1/bruteforce.c) κάναμε brute force για να βρούμε το σωστό κλειδί<br> ```sha256("2021-01-04 bigtent") = a7a7bf50cb39f3d560e0450955d653c46299c323250989cc93c9a2b9e9d1724e```.
+Αρχικά φτιάξαμε ένα python program [generatekeys.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question1/generatekeys.py) το οποίο  δημιουργεί υποψήφια κλειδιά. Τα κλειδιά αποτελούνται από όλες τις ημερομηνίες του 2021. Σαν secret χρησιμοποιούν κάποιες λέξεις που θεωρήσαμε πιθανές από ότι έχουμε συναντήσει ως τώρα και απο το https://ropsten.etherscan.io/tx/0xdcf1bfb1207e9b22c77de191570d46617fe4cdf4dbc195ade273485dddc16783 την λέξη <b>bigtent</b>. Έπειτα με το πρόγραμμα [bruteforce.c](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question1/bruteforce.c) κάναμε brute force για να βρούμε το σωστό κλειδί<br> ```sha256("2021-01-04 bigtent") = a7a7bf50cb39f3d560e0450955d653c46299c323250989cc93c9a2b9e9d1724e```.
 
 10. Αφου βρήκαμε το σωστό κλειδί και διαβάζοντας τον αποκρυπτογραφημένο μήνυμα συνειδητοποιήσαμε πως o κωδικός που δινόταν επρόκειτο για κωδικό commit στο github. Συνεπώς μέσα από το <b>firefox.log</b> ανακαλύψαμε τον εξής σύνδεσμο https://github.com/asn-d6/tor/commit/4ec3bbea5172e13552d47ff95e02230e6dc99692 
-στον οποίο εύκολα διακρίνει κανείς οτι περιγράφεται ένα <b>πρόβλημα κρυπτογραφίας RSA</b> με μικρά κλειδιά. Με τον κώδικα από το [findPrimesRSA.py](src/question1/findPrimesRSA.py) βρήκαμε τους πρώτους αριθμούς p και q και ύστερα από το αρχείο [decoderRSA.py](src/question1/decoderRSA.py) κάναμε decode τα ciphertexts που μας είχαν δωθεί και βρήκαμε τα x και y.
+στον οποίο εύκολα διακρίνει κανείς οτι περιγράφεται ένα <b>πρόβλημα κρυπτογραφίας RSA</b> με μικρά κλειδιά. Με τον κώδικα από το [findPrimesRSA.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question1/findPrimesRSA.py) βρήκαμε τους πρώτους αριθμούς p και q και ύστερα από το αρχείο [decoderRSA.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question1/decoderRSA.py) κάναμε decode τα ciphertexts που μας είχαν δωθεί και βρήκαμε τα x και y.
 
 11. Στον σύνδεσμο http://aqwlvm4ms72zriryeunpo3uk7myqjvatba4ikl3wy6etdrrblbezlfqd.onion/30637353063735.txt ήταν η απάντηση στο ερώτημά μας. Ο Γιώργος βρίσκόταν στο <b>Gilman's Point του Kilimanjaro</b>.
 
@@ -267,7 +267,7 @@ linux02:/home/users/sdi1700040/security/pico-master>
   * Διέυθυνση του πρώτου byte της συμβολοσειράς που αποτελέι arguement της system = Διέυθυνση του αμέσως επόμενου word
   * ```cat /var/backup/backup.log``` (string to execute with system)
 
-Τρέχοντας τα παραπάνω στο script [question4_5.py](src/question3_4_5/question4_5.py) πήραμε το ακόλουθο output. <br>
+Τρέχοντας τα παραπάνω στο script [question4_5.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question3_4_5/question4_5.py) πήραμε το ακόλουθο output. <br>
 
 ```
   Computing, approximate answer: 41.998427123123
@@ -297,7 +297,9 @@ linux02:/home/users/sdi1700040/security/pico-master>
 * Για την ***'public IP of this machine'***
   * τρέξαμε όπως πριν ένα **Return-to-libc attack** με σκοπό να εκτελεστεί η εντολή ```system("curl ifconfig.me")```, που θα μας επέστρεφε την public IP, η οποία ήταν η **54.159.81.179**. <br>
 
-Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](src/question3_4_5/question4_5.py).
+<!-- Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](src/question3_4_5/question4_5.py).
+ -->
+Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question3_4_5/question4_5.py).
 
 ## Τρέξιμο των scripts
 Για το τρέξιμο των scripts των ερωτημάτων 3,4 και 5 απλά τρέξτε ```./run.sh```. Ίσως χρειαστεί λίγος χρόνος για να εμφανιστούν όλα τα outputs, καθώς πραγματοποιούνται διάφορα curl requests στα ".onion" links.
