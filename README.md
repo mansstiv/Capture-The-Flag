@@ -297,7 +297,9 @@ linux02:/home/users/sdi1700040/security/pico-master>
 * Για την ***'public IP of this machine'***
   * τρέξαμε όπως πριν ένα **Return-to-libc attack** με σκοπό να εκτελεστεί η εντολή ```system("curl ifconfig.me")```, που θα μας επέστρεφε την public IP, η οποία ήταν η **54.159.81.179**. <br>
 
-Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](src/question3_4_5/question4_5.py).
+<!-- Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](src/question3_4_5/question4_5.py).
+ -->
+Το script που τρέξαμε για το ερώτημα 4 και 5 μπορείτε να το βρείτε στο [question4_5.py](https://github.com/mansstiv/Capture-The-Flag/blob/master/src/question3_4_5/question4_5.py).
 
 ## Τρέξιμο των scripts
 Για το τρέξιμο των scripts των ερωτημάτων 3,4 και 5 απλά τρέξτε ```./run.sh```. Ίσως χρειαστεί λίγος χρόνος για να εμφανιστούν όλα τα outputs, καθώς πραγματοποιούνται διάφορα curl requests στα ".onion" links.
